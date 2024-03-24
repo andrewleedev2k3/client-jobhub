@@ -1,0 +1,18 @@
+.MuiInput-underline::before {
+    border: none !important;
+}
+
+.MuiInput-underline::after {
+    border-bottom: 2px solid #00a7ac !important;
+}
+.MuiModal-root {
+    z-index: 99999999999999 !important;
+}
+
+.MuiPickersPopper-root {
+    z-index: 2000000 !important;
+}
+
+.MuiInputBase-root {
+    max-height: 50.5px !important;
+}

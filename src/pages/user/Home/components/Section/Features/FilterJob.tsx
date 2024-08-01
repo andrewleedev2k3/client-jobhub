@@ -1,10 +1,10 @@
 import { useGetProvincesQuery } from '@/services/utilsApiSlice';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Swiper as SwiperType } from 'swiper';
-import { IoIosArrowForward, IoIosArrowBack } from 'react-icons/io';
-import { Autoplay } from 'swiper/modules';
-import { Dispatch, useEffect, useRef, useState } from 'react';
 import { Box, LinearProgress } from '@mui/material';
+import { Dispatch, useEffect, useRef, useState } from 'react';
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
+import { Swiper as SwiperType } from 'swiper';
+import { Autoplay } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 const FilterJob = ({ onSetCity }: { onSetCity: Dispatch<React.SetStateAction<string>> }) => {
     const { data, isLoading, isError } = useGetProvincesQuery();
 
@@ -19,8 +19,8 @@ const FilterJob = ({ onSetCity }: { onSetCity: Dispatch<React.SetStateAction<str
     const swiperRef = useRef<SwiperType>();
 
     return (
-        <div className="flex flex-col gap-8 font-family-text  justify-center items-center mb-10">
-            <div className="flex gap-8 w-[80%] justify-between items-center ">
+        <div className="flex flex-col gap-8 font-family-text justify-center items-center mb-10">
+            <div className="flex max-w-[80%] justify-between items-center gap-4">
                 <button
                     onClick={() => swiperRef?.current?.slidePrev()}
                     className="p-1 rounded-full border-2 border-primary-100 hover:border-primary-blur duration-200 group"
@@ -36,6 +36,7 @@ const FilterJob = ({ onSetCity }: { onSetCity: Dispatch<React.SetStateAction<str
                     </Box>
                 )}
                 <Swiper
+                    className="max-w-[85%]"
                     modules={[Autoplay]}
                     autoplay={{
                         delay: 2500,
@@ -65,13 +66,12 @@ const FilterJob = ({ onSetCity }: { onSetCity: Dispatch<React.SetStateAction<str
                             spaceBetween: 10,
                         },
                     }}
-                    className="flex items-center"
                 >
                     {provices?.map((item: any, index: any) => (
                         <SwiperSlide key={index}>
                             <div
-                                onClick={() => onSetCity(item.name)}
                                 className="p-2 border-primary-100 border-2 text-center rounded-lg cursor-pointer hover:text-white hover:bg-primary-100 duration-200 font-medium"
+                                onClick={() => onSetCity(item.name)}
                             >
                                 {item.name}
                             </div>
@@ -87,7 +87,6 @@ const FilterJob = ({ onSetCity }: { onSetCity: Dispatch<React.SetStateAction<str
                     </div>
                 </button>
             </div>
-
             <div
                 onClick={() => onSetCity(' ')}
                 className="p-2 border-primary-100 border-2 text-center rounded-lg cursor-pointer hover:text-white hover:bg-primary-100 duration-200 font-medium"
